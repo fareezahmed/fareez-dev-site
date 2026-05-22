@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fareez Ahmed — Software · Robotics · Workshops</title>
+
+<!-- SEO -->
+<meta name="description" content="Fareez Ahmed — software developer, chief developer, robotics & electronics enthusiast based in Melbourne. Building tools for everyday Muslims, ADHDers, and curious teens. Available for consulting and STEM workshops.">
+<meta name="author" content="Fareez Ahmed">
+<meta name="theme-color" content="#0d0d0b">
+<link rel="canonical" href="https://fareez.dev/">
+
+<script async src="https://analytics.fareez.dev/script.js" data-website-id="95d7e13f-5749-4edc-a724-df39b41f5246"></script>
+
+<!-- OpenGraph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://fareez.dev/">
+<meta property="og:title" content="Fareez Ahmed — Software · Robotics · Workshops">
+<meta property="og:description" content="Software developer, chief developer, robotics & electronics enthusiast. Available for consulting and public STEM sessions.">
+<meta property="og:image" content="https://fareez.dev/og-image.png">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fareez Ahmed — Software · Robotics · Workshops">
+<meta name="twitter:description" content="Software developer, chief developer, robotics & electronics enthusiast. Available for consulting and public STEM sessions.">
+<meta name="twitter:image" content="https://fareez.dev/og-image.png">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0d0b;
+  --bg-soft: #15150f;
+  --surface: #1a1a14;
+  --surface-2: #22221b;
+  --line: #2a2a22;
+  --line-bright: #3a3a30;
+  --ink: #f0ebdb;
+  --ink-dim: #a8a499;
+  --ink-fade: #65625a;
+  --dev: #ff7849;     /* terra cotta - software */
+  --lead: #f4c43c;    /* amber - leadership */
+  --bot: #d4ff52;     /* lime - robotics */
+  --game: #ff5cb2;    /* hot pink - gaming */
+  --blue: #6ea8ff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Manrope', sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: radial-gradient(circle at 1px 1px, rgba(240, 235, 219, 0.05) 1px, transparent 0);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 80% 0%, rgba(255, 120, 73, 0.08), transparent 50%),
+    radial-gradient(ellipse at 20% 100%, rgba(212, 255, 82, 0.06), transparent 50%);
+  pointer-events: none;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.container { max-width: 1280px; margin: 0 auto; padding: 0 32px; }
+@media (max-width: 720px) { .container { padding: 0 20px; } }
+
+/* ============ NAV ============ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(13, 13, 11, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 32px; max-width: 1280px; margin: 0 auto;
+}
+.brand {
+  font-family: 'Fraunces', serif;
+  font-weight: 600; font-size: 1.05rem;
+  letter-spacing: -0.01em;
+  display: flex; align-items: center; gap: 10px;
+}
+.brand-dot {
+  width: 8px; height: 8px;
+  background: var(--dev); border-radius: 50%;
+  box-shadow: 0 0 14px var(--dev);
+  animation: heartbeat 2s infinite;
+}
+@keyframes heartbeat {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+.nav-links { display: flex; gap: 26px; align-items: center; }
+.nav-links a {
+  color: var(--ink-dim); text-decoration: none;
+  font-size: 0.92rem; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-cta {
+  padding: 8px 16px;
+  border: 1px solid var(--ink);
+  color: var(--ink) !important;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: var(--ink); color: var(--bg) !important; }
+@media (max-width: 720px) {
+  .nav-links a:not(.nav-cta) { display: none; }
+  .nav-inner { padding: 14px 20px; }
+}
+
+/* ============ TICKER ============ */
+.ticker {
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  position: relative;
+}
+.ticker-track {
+  display: flex;
+  gap: 48px;
+  white-space: nowrap;
+  animation: scroll 40s linear infinite;
+  padding: 10px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--ink-dim);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.ticker-track span { display: inline-flex; align-items: center; gap: 10px; }
+.ticker-track .dot { width: 5px; height: 5px; border-radius: 50%; display: inline-block; }
+.ticker .dot.green { background: var(--bot); box-shadow: 0 0 6px var(--bot); }
+.ticker .dot.amber { background: var(--lead); }
+.ticker .dot.pink { background: var(--game); }
+.ticker .dot.orange { background: var(--dev); }
+@keyframes scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ============ HERO ============ */
+.hero {
+  padding: 80px 0 100px;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+}
+.hero-circuit {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  z-index: 0;
+}
+.hero-circuit path { fill: none; stroke: var(--line-bright); stroke-width: 1; }
+.hero-circuit .trace-glow {
+  stroke: var(--dev);
+  stroke-dasharray: 6 200;
+  animation: trace 8s linear infinite;
+}
+.hero-circuit .trace-glow.alt {
+  stroke: var(--bot);
+  animation-delay: -3s;
+  animation-duration: 12s;
+}
+@keyframes trace { to { stroke-dashoffset: -206; } }
+.hero-circuit circle { fill: var(--line-bright); }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+@media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } }
+
+.hero-meta {
+  display: flex; gap: 18px; flex-wrap: wrap;
+  margin-bottom: 40px;
+  color: var(--ink-fade);
+}
+.hero-meta-item { display: flex; align-items: center; gap: 8px; }
+.live-dot {
+  width: 6px; height: 6px;
+  background: var(--bot); border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 8px var(--bot); }
+  50% { opacity: 0.4; box-shadow: 0 0 1px var(--bot); }
+}
+
+.hero h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.4rem, 6.5vw, 5.4rem);
+  font-weight: 500;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  margin-bottom: 28px;
+  font-variation-settings: "opsz" 144, "SOFT" 30;
+}
+.hero h1 em { font-style: italic; color: var(--dev); font-weight: 400; }
+.hero h1 .bracket {
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--ink-fade);
+  font-weight: 400; font-size: 0.55em;
+  vertical-align: middle;
+}
+
+.hero-tag {
+  color: var(--ink-dim);
+  font-size: 1.05rem;
+  margin-bottom: 36px;
+  max-width: 520px;
+  line-height: 1.6;
+}
+.hero-tag strong { color: var(--ink); font-weight: 500; }
+
+.hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 22px;
+  border-radius: 999px;
+  font-size: 0.95rem; font-weight: 500;
+  text-decoration: none; transition: all 0.2s;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+.btn-primary { background: var(--dev); color: var(--bg); }
+.btn-primary:hover { background: var(--ink); transform: translateY(-1px); }
+.btn-ghost { border-color: var(--line-bright); color: var(--ink); }
+.btn-ghost:hover { border-color: var(--ink); background: var(--bg-soft); }
+.btn-arrow { font-family: 'JetBrains Mono', monospace; }
+
+/* ============ TERMINAL ============ */
+.terminal {
+  background: #0a0a08;
+  border: 1px solid var(--line-bright);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 120, 73, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  position: relative;
+}
+.terminal::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(0deg, transparent 0, transparent 2px, rgba(255,255,255,0.012) 2px, rgba(255,255,255,0.012) 4px);
+  pointer-events: none;
+  z-index: 1;
+}
+.term-bar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  color: var(--ink-fade);
+}
+.term-dots { display: flex; gap: 6px; margin-right: 10px; }
+.term-dots span { width: 11px; height: 11px; border-radius: 50%; }
+.term-dots span:nth-child(1) { background: #ff5f57; }
+.term-dots span:nth-child(2) { background: #febc2e; }
+.term-dots span:nth-child(3) { background: #28c840; }
+.term-bar .path { color: var(--ink-dim); }
+
+.term-body {
+  padding: 22px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--ink);
+  min-height: 280px;
+  position: relative;
+  z-index: 2;
+}
+.term-line { display: block; }
+.term-prompt { color: var(--bot); }
+.term-comment { color: var(--ink-fade); }
+.term-str { color: var(--lead); }
+.term-fn { color: var(--blue); }
+.term-key { color: var(--game); }
+.term-out { color: var(--ink-dim); }
+.cursor {
+  display: inline-block;
+  width: 8px; height: 1.1em;
+  background: var(--dev);
+  vertical-align: text-bottom;
+  animation: blink 1s steps(2) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* ============ SECTION ============ */
+.section { padding: 100px 0; border-bottom: 1px solid var(--line); position: relative; }
+@media (max-width: 720px) { .section { padding: 68px 0; } }
+.section-head {
+  display: flex; align-items: baseline; justify-content: space-between;
+  margin-bottom: 60px; flex-wrap: wrap; gap: 16px;
+}
+.section-label { color: var(--ink-fade); display: flex; align-items: center; gap: 10px; }
+.section-label::before { content: ''; width: 24px; height: 1px; background: var(--ink-fade); }
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.7rem, 3.6vw, 2.7rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1; max-width: 760px;
+}
+
+/* ============ PILLARS ============ */
+.pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+@media (max-width: 720px) { .pillars { grid-template-columns: 1fr; } }
+
+.pillar {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 28px;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.pillar:hover { transform: translateY(-3px); border-color: var(--line-bright); }
+.pillar::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--pillar-color);
+}
+.pillar.dev { --pillar-color: var(--dev); }
+.pillar.lead { --pillar-color: var(--lead); }
+.pillar.bot { --pillar-color: var(--bot); }
+.pillar.game { --pillar-color: var(--game); }
+
+.pillar-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; }
+.pillar-icon {
+  width: 64px; height: 64px;
+  border: 1px solid var(--line-bright);
+  border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg);
+  position: relative;
+}
+.pillar.dev .pillar-icon { box-shadow: 0 0 24px rgba(255,120,73,0.15); }
+.pillar.lead .pillar-icon { box-shadow: 0 0 24px rgba(244,196,60,0.12); }
+.pillar.bot .pillar-icon { box-shadow: 0 0 24px rgba(212,255,82,0.12); }
+.pillar.game .pillar-icon { box-shadow: 0 0 24px rgba(255,92,178,0.15); }
+.pillar-num { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--ink-fade); }
+.pillar-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.55rem; font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+  color: var(--pillar-color);
+}
+.pillar-desc { color: var(--ink-dim); font-size: 0.93rem; margin-bottom: 18px; }
+.pillar-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  padding: 3px 9px;
+  border: 1px solid var(--line-bright);
+  border-radius: 3px;
+  color: var(--ink-dim);
+  text-transform: lowercase;
+  letter-spacing: 0.03em;
+}
+
+/* ============ NOW WIDGETS ============ */
+.now-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 40px; }
+@media (max-width: 720px) { .now-grid { grid-template-columns: 1fr; } }
+.now-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 22px;
+  border-radius: 6px;
+}
+.now-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--ink-fade);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+.now-bar {
+  height: 3px; flex: 1;
+  background: var(--line);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+.now-bar::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; height: 100%;
+  background: var(--now-color, var(--dev));
+  width: 60%;
+  animation: progress 6s ease-in-out infinite alternate;
+}
+@keyframes progress { from { width: 30%; } to { width: 75%; } }
+.now-card.building { --now-color: var(--dev); }
+.now-card.playing { --now-color: var(--game); }
+.now-card.reading { --now-color: var(--lead); }
+.now-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.15rem; font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.now-sub { font-size: 0.85rem; color: var(--ink-dim); }
+
+/* ============ PROJECTS ============ */
+.projects { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 760px) { .projects { grid-template-columns: 1fr; } }
+
+.project {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--surface);
+  display: flex; flex-direction: column;
+  transition: transform 0.3s, border-color 0.3s;
+}
+.project:hover { border-color: var(--line-bright); transform: translateY(-2px); }
+a.project {
+  text-decoration: none;
+  color: inherit;
+}
+
+.project-visual {
+  aspect-ratio: 16 / 9;
+  background: radial-gradient(ellipse at center, var(--surface-2), var(--bg));
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--line);
+  position: relative;
+  overflow: hidden;
+}
+.project-visual::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(240,235,219,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240,235,219,0.025) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.project-visual svg { position: relative; z-index: 1; }
+.project-body { padding: 22px; }
+.project-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem; text-transform: uppercase;
+  letter-spacing: 0.08em; margin-bottom: 10px;
+}
+.project-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.45rem; font-weight: 500;
+  margin-bottom: 8px; letter-spacing: -0.01em;
+}
+.project-desc { color: var(--ink-dim); font-size: 0.92rem; }
+
+/* ============ TOOLS ============ */
+.tools {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+@media (max-width: 640px) { .tools { grid-template-columns: 1fr; } }
+.tool {
+  background: var(--bg);
+  padding: 30px 26px;
+  display: flex; flex-direction: column; gap: 10px;
+  transition: background 0.3s;
+  text-decoration: none; color: var(--ink);
+  min-height: 200px;
+}
+.tool:hover { background: var(--bg-soft); }
+.tool-num { font-family: 'JetBrains Mono', monospace; color: var(--ink-fade); font-size: 0.7rem; }
+.tool-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.45rem; font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--bot);
+}
+.tool-desc { color: var(--ink-dim); font-size: 0.92rem; flex: 1; }
+.tool-go {
+  color: var(--ink-fade);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 8px;
+}
+.tool:hover .tool-go { color: var(--bot); }
+
+/* ============ CTA ============ */
+.cta-row { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 720px) { .cta-row { grid-template-columns: 1fr; } }
+.cta-card {
+  padding: 40px;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  display: flex; flex-direction: column;
+}
+.cta-card.consult {
+  background: linear-gradient(135deg, var(--dev), #e85a2b);
+  color: var(--bg);
+}
+.cta-card.speak {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line-bright);
+}
+.cta-card::before {
+  content: '';
+  position: absolute; top: -30%; right: -30%;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  opacity: 0.2;
+}
+.cta-card.consult::before { background: var(--ink); }
+.cta-card.speak::before { background: var(--bot); }
+.cta-card > * { position: relative; z-index: 1; }
+.cta-card .mono { opacity: 0.75; margin-bottom: 16px; display: block; }
+.cta-card h3 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.9rem; font-weight: 500;
+  line-height: 1.1; margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.cta-card p { font-size: 0.95rem; margin-bottom: 28px; opacity: 0.9; flex: 1; }
+.cta-card.consult .btn { background: var(--bg); color: var(--dev); align-self: flex-start; }
+.cta-card.consult .btn:hover { background: var(--ink); color: var(--bg); }
+.cta-card.speak .btn { background: var(--ink); color: var(--bg); align-self: flex-start; }
+.cta-card.speak .btn:hover { background: var(--bot); }
+
+/* ============ UFO (hero easter egg) ============ */
+.ufo {
+  position: absolute;
+  top: 60px;
+  right: 4%;
+  width: 90px;
+  height: 90px;
+  z-index: 0;
+  animation: ufo-drift 6s ease-in-out infinite alternate;
+  pointer-events: none;
+  opacity: 0.85;
+}
+@media (max-width: 960px) {
+  .ufo { top: 20px; right: 6%; width: 60px; height: 60px; opacity: 0.7; }
+}
+@keyframes ufo-drift {
+  0%   { transform: translate(0, 0) rotate(-2deg); }
+  100% { transform: translate(-30px, 18px) rotate(2deg); }
+}
+
+/* ============ ROVER SCENE ============ */
+.scene-band {
+  background:
+    radial-gradient(ellipse at 50% 100%, rgba(212,255,82,0.08), transparent 60%),
+    var(--bg);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  position: relative;
+}
+.scene-overlay {
+  position: relative;
+  z-index: 2;
+  display: flex; justify-content: space-between;
+  padding: 14px 32px 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--ink-fade);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex-wrap: wrap; gap: 8px;
+}
+.scene-overlay .left,
+.scene-overlay .right { display: flex; align-items: center; gap: 8px; }
+.scene-overlay .live-dot {
+  width: 6px; height: 6px;
+  background: var(--bot); border-radius: 50%;
+  box-shadow: 0 0 8px var(--bot);
+  animation: pulse 2s infinite;
+}
+.scene-overlay .right b { color: var(--bot); font-weight: 500; }
+.scene-svg {
+  width: 100%;
+  height: 240px;
+  display: block;
+}
+@media (max-width: 720px) {
+  .scene-svg { height: 180px; }
+  .scene-overlay { font-size: 0.62rem; padding: 14px 20px 0; }
+}
+.rover-track {
+  animation: drive 18s linear infinite;
+}
+@keyframes drive {
+  0%   { transform: translate(-90px, 158px); }
+  100% { transform: translate(1370px, 158px); }
+}
+.rover-bob {
+  animation: bob 0.45s ease-in-out infinite alternate;
+}
+@keyframes bob {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-2px); }
+}
+
+/* ============ FOOTER ============ */
+footer { padding: 60px 0 32px; position: relative; }
+.ascii-bot {
+  font-family: 'VT323', 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  color: var(--ink-fade);
+  line-height: 1.15;
+  white-space: pre;
+  margin-bottom: 36px;
+}
+.ascii-bot .eye { color: var(--bot); }
+.foot {
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+  color: var(--ink-fade); font-size: 0.85rem;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+.foot-links { display: flex; gap: 20px; }
+.foot-links a { color: var(--ink-dim); text-decoration: none; }
+.foot-links a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <span class="brand-dot"></span>
+      Fareez.dev
+    </div>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#tools">Tools</a>
+      <a href="#speak">Speaking</a>
+      <a href="#consult" class="nav-cta">Consult →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span><span class="dot green"></span>STATUS: AVAILABLE Q3 ENGAGEMENTS</span>
+    <span><span class="dot orange"></span>NOW BUILDING: ADHD LIFE PLANNER</span>
+    <span><span class="dot pink"></span>NOW PLAYING: ARMS™ on Switch</span>
+    <span><span class="dot amber"></span>READING: DESIGNING DATA-INTENSIVE APPLICATIONS</span>
+    <span><span class="dot green"></span>LAST SHIPPED: WALL-DODGER BOT — 200MM CHASSIS</span>
+    <span><span class="dot orange"></span>BASED IN MELBOURNE · UTC+11</span>
+    <span><span class="dot green"></span>STATUS: AVAILABLE Q3 ENGAGEMENTS</span>
+    <span><span class="dot orange"></span>NOW BUILDING: ADHD LIFE PLANNER</span>
+    <span><span class="dot pink"></span>NOW PLAYING: ARMS™ on Switch</span>
+    <span><span class="dot amber"></span>READING: DESIGNING DATA-INTENSIVE APPLICATIONS</span>
+    <span><span class="dot green"></span>LAST SHIPPED: WALL-DODGER BOT — 200MM CHASSIS</span>
+    <span><span class="dot orange"></span>BASED IN MELBOURNE · UTC+11</span>
+  </div>
+</div>
+
+<header class="hero">
+  <!-- Drifting UFO easter egg -->
+  <svg class="ufo" viewBox="0 0 90 90" aria-hidden="true">
+    <!-- ground glow -->
+    <ellipse cx="45" cy="44" rx="34" ry="5" fill="rgba(255,92,178,0.18)"/>
+    <!-- beam -->
+    <path d="M 32 50 L 58 50 L 66 85 L 24 85 Z" fill="rgba(255,92,178,0.12)">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+    </path>
+    <!-- saucer body -->
+    <ellipse cx="45" cy="45" rx="30" ry="6" fill="#15150f" stroke="#ff5cb2" stroke-width="1.6"/>
+    <ellipse cx="45" cy="44" rx="30" ry="2" fill="#ff5cb2" opacity="0.25"/>
+    <!-- dome -->
+    <path d="M 24 43 Q 45 20, 66 43 Z" fill="#15150f" stroke="#ff5cb2" stroke-width="1.6"/>
+    <ellipse cx="45" cy="34" rx="10" ry="3.5" fill="#ff5cb2" opacity="0.5"/>
+    <!-- antenna -->
+    <line x1="45" y1="20" x2="45" y2="12" stroke="#ff5cb2" stroke-width="1.4"/>
+    <circle cx="45" cy="10" r="2" fill="#ff5cb2">
+      <animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite"/>
+    </circle>
+    <!-- bottom lights -->
+    <circle cx="30" cy="48" r="1.8" fill="#ff5cb2">
+      <animate attributeName="opacity" values="1;0.2;1" dur="0.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="45" cy="49" r="1.8" fill="#ff5cb2">
+      <animate attributeName="opacity" values="0.2;1;0.2" dur="0.8s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="60" cy="48" r="1.8" fill="#ff5cb2">
+      <animate attributeName="opacity" values="1;0.2;1" dur="0.8s" begin="0.4s" repeatCount="indefinite"/>
+    </circle>
+  </svg>
+
+  <svg class="hero-circuit" viewBox="0 0 1280 700" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M 0 120 L 200 120 L 240 160 L 480 160 L 520 120 L 800 120"/>
+    <path d="M 1280 80 L 1100 80 L 1080 100 L 900 100"/>
+    <path d="M 0 580 L 180 580 L 220 540 L 600 540 L 640 580 L 1100 580 L 1140 540 L 1280 540"/>
+    <path d="M 0 380 L 80 380 L 120 420 L 80 460"/>
+    <path d="M 1280 320 L 1180 320 L 1140 280 L 1180 240"/>
+    <path class="trace-glow" d="M 0 120 L 200 120 L 240 160 L 480 160 L 520 120 L 800 120"/>
+    <path class="trace-glow alt" d="M 0 580 L 180 580 L 220 540 L 600 540 L 640 580 L 1100 580 L 1140 540 L 1280 540"/>
+    <circle cx="200" cy="120" r="3"/>
+    <circle cx="240" cy="160" r="3"/>
+    <circle cx="480" cy="160" r="3"/>
+    <circle cx="520" cy="120" r="3"/>
+    <circle cx="220" cy="540" r="3"/>
+    <circle cx="640" cy="580" r="3"/>
+    <circle cx="1140" cy="540" r="3"/>
+    <circle cx="120" cy="420" r="3"/>
+    <circle cx="1140" cy="280" r="3"/>
+    <rect x="56" y="370" width="20" height="20" fill="none" stroke="rgba(255,120,73,0.5)"/>
+    <rect x="60" y="374" width="12" height="12" fill="rgba(255,120,73,0.15)"/>
+    <rect x="1184" y="232" width="20" height="20" fill="none" stroke="rgba(212,255,82,0.5)"/>
+  </svg>
+
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-meta mono">
+          <span class="hero-meta-item"><span class="live-dot"></span><span id="clock">--:--</span> AEST</span>
+          <span class="hero-meta-item">MELBOURNE · AU</span>
+          <span class="hero-meta-item">v4.7.2026</span>
+        </div>
+
+        <h1>
+          Fareez<span class="bracket">.dev</span><br>
+          Building <em>thinking</em><br>
+          machines &amp; the<br>
+          people who use them.
+        </h1>
+
+        <p class="hero-tag">
+          I'm a <strong>software developer</strong> and <strong>chief developer</strong> who escapes weekends into <strong>Arduino, motors and 3D-printed chassis</strong> — and unwinds with games. Currently building tools for everyday Muslims, ADHDers, and curious teens.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#work" class="btn btn-primary">See selected work <span class="btn-arrow">↓</span></a>
+          <a href="#consult" class="btn btn-ghost">Work with me</a>
+        </div>
+      </div>
+
+      <div class="terminal">
+        <div class="term-bar">
+          <div class="term-dots"><span></span><span></span><span></span></div>
+          <span class="path">~/fareez/workbench</span>
+        </div>
+        <div class="term-body">
+<span class="term-line"><span class="term-prompt">fareez@melbourne</span>:<span class="term-fn">~</span>$ whoami --verbose</span>
+<span class="term-line term-out">  name      : <span class="term-str">"Fareez Ahmed"</span></span>
+<span class="term-line term-out">  roles     : [<span class="term-key">dev</span>, <span class="term-key">chief_dev</span>, <span class="term-key">maker</span>, <span class="term-key">gamer</span>]</span>
+<span class="term-line term-out">  base      : <span class="term-str">"Melbourne, AU"</span></span>
+<span class="term-line term-out">  stack     : <span class="term-str">"web + embedded + teen STEM"</span></span>
+<span class="term-line"></span>
+<span class="term-line"><span class="term-prompt">fareez@melbourne</span>:<span class="term-fn">~</span>$ ls ./projects/active</span>
+<span class="term-line term-out">  <span class="term-fn">▸</span> meeras/   <span class="term-comment"># islamic will</span></span>
+<span class="term-line term-out">  <span class="term-fn">▸</span> mcalc/    <span class="term-comment"># faraid calculator</span></span>
+<span class="term-line term-out">  <span class="term-fn">▸</span> zakat-calculator/</span>
+<span class="term-line term-out">  <span class="term-fn">▸</span> adhd-life-planner/</span>
+<span class="term-line term-out">  <span class="term-fn">▸</span> wall-dodger-bot/   <span class="term-comment"># arduino</span></span>
+<span class="term-line"></span>
+<span class="term-line"><span class="term-prompt">fareez@melbourne</span>:<span class="term-fn">~</span>$ status<span class="cursor"></span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ROVER SCENE ============ -->
+<section class="scene-band">
+  <div class="scene-overlay">
+    <div class="left"><span class="live-dot"></span>// rover.exe — autonomous navigation demo</div>
+    <div class="right">SONAR <b>ACTIVE</b> · SPEED <b>120 RPM</b> · BATT <b>87%</b></div>
+  </div>
+  <svg class="scene-svg" viewBox="0 0 1280 240" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <!-- PCB traces in background -->
+    <g opacity="0.45">
+      <path d="M 0 50 L 250 50 L 270 70 L 500 70 L 520 50 L 800 50 L 820 30 L 1100 30" stroke="rgba(212,255,82,0.4)" stroke-width="1.2" fill="none"/>
+      <path d="M 1280 90 L 1000 90 L 980 110 L 700 110 L 680 90 L 450 90" stroke="rgba(212,255,82,0.3)" stroke-width="1.2" fill="none"/>
+      <path d="M 100 30 L 100 100 M 400 30 L 400 50 M 900 30 L 900 70 M 1180 90 L 1180 130" stroke="rgba(212,255,82,0.25)" stroke-width="1" fill="none"/>
+      <circle cx="250" cy="50" r="2.5" fill="rgba(212,255,82,0.6)"/>
+      <circle cx="270" cy="70" r="2.5" fill="rgba(212,255,82,0.6)"/>
+      <circle cx="500" cy="70" r="2.5" fill="rgba(212,255,82,0.6)"/>
+      <circle cx="520" cy="50" r="2.5" fill="rgba(212,255,82,0.6)"/>
+      <circle cx="820" cy="30" r="2.5" fill="rgba(212,255,82,0.6)"/>
+      <circle cx="1000" cy="90" r="2.5" fill="rgba(212,255,82,0.6)"/>
+      <circle cx="980" cy="110" r="2.5" fill="rgba(212,255,82,0.6)"/>
+      <circle cx="680" cy="90" r="2.5" fill="rgba(212,255,82,0.6)"/>
+    </g>
+
+    <!-- Resistor R1 -->
+    <g transform="translate(380, 85)">
+      <line x1="-20" y1="0" x2="-9" y2="0" stroke="#ff7849" stroke-width="1.2"/>
+      <rect x="-9" y="-5" width="18" height="10" rx="1" fill="rgba(255,120,73,0.12)" stroke="#ff7849" stroke-width="1.3">
+        <animate attributeName="stroke-opacity" values="0.4;1;0.4" dur="3.2s" repeatCount="indefinite"/>
+      </rect>
+      <line x1="9" y1="0" x2="20" y2="0" stroke="#ff7849" stroke-width="1.2"/>
+      <text x="0" y="22" font-family="JetBrains Mono" font-size="8" fill="#65625a" text-anchor="middle">R1 · 220Ω</text>
+    </g>
+
+    <!-- Capacitor C1 -->
+    <g transform="translate(700, 90)">
+      <line x1="0" y1="-15" x2="0" y2="-4" stroke="#ff7849" stroke-width="1.2"/>
+      <line x1="-8" y1="-4" x2="8" y2="-4" stroke="#ff7849" stroke-width="1.8">
+        <animate attributeName="stroke-opacity" values="0.4;1;0.4" dur="3.2s" begin="1s" repeatCount="indefinite"/>
+      </line>
+      <line x1="-8" y1="4" x2="8" y2="4" stroke="#ff7849" stroke-width="1.8">
+        <animate attributeName="stroke-opacity" values="0.4;1;0.4" dur="3.2s" begin="1s" repeatCount="indefinite"/>
+      </line>
+      <line x1="0" y1="4" x2="0" y2="15" stroke="#ff7849" stroke-width="1.2"/>
+      <text x="0" y="30" font-family="JetBrains Mono" font-size="8" fill="#65625a" text-anchor="middle">C1 · 10µF</text>
+    </g>
+
+    <!-- IC chip -->
+    <g transform="translate(1030, 85)">
+      <rect x="-22" y="-12" width="44" height="24" rx="1.5" fill="rgba(255,120,73,0.08)" stroke="#ff7849" stroke-width="1.3">
+        <animate attributeName="stroke-opacity" values="0.4;1;0.4" dur="3.2s" begin="2s" repeatCount="indefinite"/>
+      </rect>
+      <line x1="-16" y1="-12" x2="-16" y2="-17" stroke="#ff7849" stroke-width="1"/>
+      <line x1="-9" y1="-12" x2="-9" y2="-17" stroke="#ff7849" stroke-width="1"/>
+      <line x1="-2" y1="-12" x2="-2" y2="-17" stroke="#ff7849" stroke-width="1"/>
+      <line x1="5" y1="-12" x2="5" y2="-17" stroke="#ff7849" stroke-width="1"/>
+      <line x1="12" y1="-12" x2="12" y2="-17" stroke="#ff7849" stroke-width="1"/>
+      <line x1="-16" y1="12" x2="-16" y2="17" stroke="#ff7849" stroke-width="1"/>
+      <line x1="-9" y1="12" x2="-9" y2="17" stroke="#ff7849" stroke-width="1"/>
+      <line x1="-2" y1="12" x2="-2" y2="17" stroke="#ff7849" stroke-width="1"/>
+      <line x1="5" y1="12" x2="5" y2="17" stroke="#ff7849" stroke-width="1"/>
+      <line x1="12" y1="12" x2="12" y2="17" stroke="#ff7849" stroke-width="1"/>
+      <circle cx="-16" cy="-7" r="1.8" fill="#ff7849"/>
+      <text x="0" y="3" font-family="JetBrains Mono" font-size="7" fill="#ff7849" text-anchor="middle">ATMEGA328P</text>
+    </g>
+
+    <!-- Animated road -->
+    <line x1="0" y1="187" x2="1280" y2="187" stroke="rgba(240,235,219,0.18)" stroke-width="1" stroke-dasharray="6 8">
+      <animate attributeName="stroke-dashoffset" from="0" to="-14" dur="0.6s" repeatCount="indefinite"/>
+    </line>
+
+    <!-- THE ROVER -->
+    <g class="rover-track">
+      <g class="rover-bob">
+        <!-- Sonar pulses emitting forward -->
+        <circle cx="40" cy="-4" r="6" fill="none" stroke="#d4ff52" stroke-width="1.4">
+          <animate attributeName="r" from="6" to="32" dur="2s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" from="0.9" to="0" dur="2s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="40" cy="-4" r="6" fill="none" stroke="#d4ff52" stroke-width="1.2">
+          <animate attributeName="r" from="6" to="32" dur="2s" begin="0.66s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" from="0.8" to="0" dur="2s" begin="0.66s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="40" cy="-4" r="6" fill="none" stroke="#d4ff52" stroke-width="1">
+          <animate attributeName="r" from="6" to="32" dur="2s" begin="1.33s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" from="0.7" to="0" dur="2s" begin="1.33s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Shadow under rover -->
+        <ellipse cx="0" cy="32" rx="36" ry="3" fill="rgba(212,255,82,0.18)"/>
+
+        <!-- Main body chassis -->
+        <rect x="-32" y="-18" width="64" height="32" rx="4" fill="#15150f" stroke="#d4ff52" stroke-width="1.5"/>
+        <!-- Top stripe -->
+        <rect x="-32" y="-18" width="64" height="3" fill="#d4ff52" opacity="0.5"/>
+        <!-- Side vents -->
+        <line x1="-26" y1="-2" x2="-18" y2="-2" stroke="#d4ff52" stroke-width="1" opacity="0.6"/>
+        <line x1="-26" y1="4" x2="-18" y2="4" stroke="#d4ff52" stroke-width="1" opacity="0.6"/>
+        <!-- Front grille hint -->
+        <line x1="32" y1="-8" x2="32" y2="6" stroke="#d4ff52" stroke-width="1.5" opacity="0.7"/>
+
+        <!-- Eyes (ultrasonic sensors) -->
+        <circle cx="15" cy="-6" r="5" fill="#0d0d0b" stroke="#d4ff52" stroke-width="1"/>
+        <circle cx="15" cy="-6" r="2" fill="#d4ff52">
+          <animate attributeName="opacity" values="1;1;1;1;0.15;1;1" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="27" cy="-6" r="5" fill="#0d0d0b" stroke="#d4ff52" stroke-width="1"/>
+        <circle cx="27" cy="-6" r="2" fill="#d4ff52">
+          <animate attributeName="opacity" values="1;1;1;1;0.15;1;1" dur="4s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Status LED (chassis rear) -->
+        <circle cx="-22" cy="-10" r="2" fill="#ff7849">
+          <animate attributeName="opacity" values="1;0.2;1" dur="1s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Antenna -->
+        <line x1="-8" y1="-18" x2="-8" y2="-32" stroke="#d4ff52" stroke-width="1.4"/>
+        <circle cx="-8" cy="-34" r="2.5" fill="#d4ff52">
+          <animate attributeName="opacity" values="1;0.3;1" dur="1.4s" repeatCount="indefinite"/>
+          <animate attributeName="r" values="2.5;3.8;2.5" dur="1.4s" repeatCount="indefinite"/>
+        </circle>
+
+        <!-- Left wheel -->
+        <g transform="translate(-20 18)">
+          <g>
+            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="0.5s" repeatCount="indefinite"/>
+            <circle r="10" fill="#0d0d0b" stroke="#d4ff52" stroke-width="1.5"/>
+            <line x1="0" y1="-10" x2="0" y2="10" stroke="#d4ff52" stroke-width="1"/>
+            <line x1="-10" y1="0" x2="10" y2="0" stroke="#d4ff52" stroke-width="1"/>
+            <line x1="-7" y1="-7" x2="7" y2="7" stroke="#d4ff52" stroke-width="0.8" opacity="0.6"/>
+            <line x1="-7" y1="7" x2="7" y2="-7" stroke="#d4ff52" stroke-width="0.8" opacity="0.6"/>
+            <circle r="2.5" fill="#d4ff52"/>
+          </g>
+        </g>
+        <!-- Right wheel -->
+        <g transform="translate(20 18)">
+          <g>
+            <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="0.5s" repeatCount="indefinite"/>
+            <circle r="10" fill="#0d0d0b" stroke="#d4ff52" stroke-width="1.5"/>
+            <line x1="0" y1="-10" x2="0" y2="10" stroke="#d4ff52" stroke-width="1"/>
+            <line x1="-10" y1="0" x2="10" y2="0" stroke="#d4ff52" stroke-width="1"/>
+            <line x1="-7" y1="-7" x2="7" y2="7" stroke="#d4ff52" stroke-width="0.8" opacity="0.6"/>
+            <line x1="-7" y1="7" x2="7" y2="-7" stroke="#d4ff52" stroke-width="0.8" opacity="0.6"/>
+            <circle r="2.5" fill="#d4ff52"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </svg>
+</section>
+
+<section class="section" id="pillars">
+  <div class="container">
+    <div class="section-head">
+      <span class="mono section-label">§ 01 — What I do</span>
+      <h2 class="section-title">Four practices, one workbench.</h2>
+    </div>
+
+    <div class="pillars">
+      <div class="pillar dev">
+        <div class="pillar-head">
+          <div class="pillar-icon">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="#ff7849" stroke-width="1.6" stroke-linecap="round">
+              <path d="M 12 11 L 6 18 L 12 25"/>
+              <path d="M 24 11 L 30 18 L 24 25"/>
+              <path d="M 21 8 L 15 28" opacity="0.7"/>
+            </svg>
+          </div>
+          <div class="pillar-num">01 /</div>
+        </div>
+        <div class="pillar-title">Software Developer</div>
+        <div class="pillar-desc">Full-stack web &amp; systems work. Pragmatic code, clean architecture, things that ship.</div>
+        <div class="pillar-tags">
+          <span class="tag">typescript</span>
+          <span class="tag">react</span>
+          <span class="tag">node</span>
+          <span class="tag">python</span>
+          <span class="tag">postgres</span>
+        </div>
+      </div>
+
+      <div class="pillar lead">
+        <div class="pillar-head">
+          <div class="pillar-icon">
+            <svg width="40" height="36" viewBox="0 0 40 36" fill="none" stroke="#f4c43c" stroke-width="1.6">
+              <rect x="14" y="4" width="12" height="8" rx="1"/>
+              <rect x="4" y="22" width="10" height="8" rx="1"/>
+              <rect x="15" y="22" width="10" height="8" rx="1"/>
+              <rect x="26" y="22" width="10" height="8" rx="1"/>
+              <path d="M 20 12 L 20 17 M 9 22 L 9 17 L 31 17 L 31 22 M 20 17 L 20 22"/>
+            </svg>
+          </div>
+          <div class="pillar-num">02 /</div>
+        </div>
+        <div class="pillar-title">Chief Developer</div>
+        <div class="pillar-desc">Leading engineering teams. Setting technical direction. Owning what gets built — and why.</div>
+        <div class="pillar-tags">
+          <span class="tag">architecture</span>
+          <span class="tag">team-lead</span>
+          <span class="tag">code-review</span>
+          <span class="tag">mentoring</span>
+          <span class="tag">roadmap</span>
+        </div>
+      </div>
+
+      <div class="pillar bot">
+        <div class="pillar-head">
+          <div class="pillar-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="#d4ff52" stroke-width="1.6">
+              <rect x="10" y="12" width="20" height="16" rx="2"/>
+              <circle cx="15" cy="20" r="1.5" fill="#d4ff52"/>
+              <circle cx="25" cy="20" r="1.5" fill="#d4ff52"/>
+              <path d="M 18 24 L 22 24"/>
+              <path d="M 20 12 L 20 7 M 17 7 L 23 7"/>
+              <path d="M 6 18 L 10 18 M 6 22 L 10 22 M 30 18 L 34 18 M 30 22 L 34 22"/>
+              <path d="M 14 28 L 14 33 M 26 28 L 26 33"/>
+            </svg>
+          </div>
+          <div class="pillar-num">03 /</div>
+        </div>
+        <div class="pillar-title">Robotics &amp; Electronics</div>
+        <div class="pillar-desc">Arduino, 3D printing, motors, sensors. Where software meets the physical world.</div>
+        <div class="pillar-tags">
+          <span class="tag">arduino</span>
+          <span class="tag">esp32</span>
+          <span class="tag">soldering</span>
+          <span class="tag">fusion360</span>
+          <span class="tag">prusa</span>
+        </div>
+      </div>
+
+      <div class="pillar game">
+        <div class="pillar-head">
+          <div class="pillar-icon">
+            <svg width="40" height="32" viewBox="0 0 40 32" fill="none" stroke="#ff5cb2" stroke-width="1.6" stroke-linecap="round">
+              <path d="M 10 8 L 30 8 Q 36 8, 36 16 Q 36 24, 30 24 L 28 24 L 24 20 L 16 20 L 12 24 L 10 24 Q 4 24, 4 16 Q 4 8, 10 8 Z"/>
+              <line x1="11" y1="14" x2="15" y2="14"/>
+              <line x1="13" y1="12" x2="13" y2="16"/>
+              <circle cx="27" cy="13" r="1.5" fill="#ff5cb2"/>
+              <circle cx="31" cy="16" r="1.5" fill="#ff5cb2"/>
+            </svg>
+          </div>
+          <div class="pillar-num">04 /</div>
+        </div>
+        <div class="pillar-title">Gaming Enthusiast</div>
+        <div class="pillar-desc">Long-time player, mechanics-curious. Good game design sneaks into how I build systems.</div>
+        <div class="pillar-tags">
+          <span class="tag">metroidvania</span>
+          <span class="tag">factorio</span>
+          <span class="tag">indie</span>
+          <span class="tag">souls-likes</span>
+          <span class="tag">co-op</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="now-grid">
+      <div class="now-card building">
+        <div class="now-label"><span class="now-bar"></span>NOW BUILDING</div>
+        <div class="now-title">ADHD Life Planner</div>
+        <div class="now-sub">v0.3 · prototype phase</div>
+      </div>
+      <div class="now-card playing">
+        <div class="now-label"><span class="now-bar"></span>NOW PLAYING</div>
+        <div class="now-title">ARMS™</div>
+        <div class="now-sub">37 hrs · deep cradle</div>
+      </div>
+      <div class="now-card reading">
+        <div class="now-label"><span class="now-bar"></span>NOW READING</div>
+        <div class="now-title">Designing Data-Intensive Apps</div>
+        <div class="now-sub">ch. 7 · transactions</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="work">
+  <div class="container">
+    <div class="section-head">
+      <span class="mono section-label">§ 02 — Selected work</span>
+      <h2 class="section-title">From schematics to syllabi — what I've shipped lately.</h2>
+    </div>
+
+    <div class="projects">
+      <article class="project">
+        <div class="project-visual">
+          <svg width="180" height="140" viewBox="0 0 180 140" fill="none">
+            <rect x="55" y="50" width="70" height="50" rx="3" stroke="#d4ff52" stroke-width="1.4"/>
+            <circle cx="72" cy="68" r="6" stroke="#d4ff52" stroke-width="1.2"/>
+            <circle cx="108" cy="68" r="6" stroke="#d4ff52" stroke-width="1.2"/>
+            <circle cx="72" cy="68" r="2" fill="#d4ff52"/>
+            <circle cx="108" cy="68" r="2" fill="#d4ff52"/>
+            <circle cx="50" cy="105" r="10" stroke="#d4ff52" stroke-width="1.2"/>
+            <circle cx="130" cy="105" r="10" stroke="#d4ff52" stroke-width="1.2"/>
+            <line x1="90" y1="50" x2="90" y2="35" stroke="#d4ff52" stroke-width="1.2"/>
+            <circle cx="90" cy="32" r="3" fill="#d4ff52"/>
+            <path d="M 30 75 Q 20 90, 30 105" stroke="#d4ff52" stroke-width="1" fill="none" opacity="0.5"/>
+            <path d="M 22 70 Q 8 90, 22 110" stroke="#d4ff52" stroke-width="1" fill="none" opacity="0.3"/>
+            <path d="M 150 75 Q 160 90, 150 105" stroke="#d4ff52" stroke-width="1" fill="none" opacity="0.5"/>
+            <path d="M 158 70 Q 172 90, 158 110" stroke="#d4ff52" stroke-width="1" fill="none" opacity="0.3"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tag" style="color:#d4ff52;">/ robotics · education</div>
+          <h3 class="project-title">Wall-Dodger Bot</h3>
+          <p class="project-desc">Arduino obstacle-avoiding rover for a teen STEM workshop. 3D-printed 200mm chassis, HC-SR04 ultrasonic, L293D motor driver. Lesson plan included.</p>
+        </div>
+      </article>
+
+      <a class="project" href="https://fareez.dev/meeras/">
+        <div class="project-visual">
+          <svg width="180" height="140" viewBox="0 0 180 140" fill="none" aria-hidden="true">
+            <rect x="48" y="28" width="84" height="100" rx="3" stroke="#f4c43c" stroke-width="1.4" fill="rgba(244,196,60,0.06)"/>
+            <line x1="58" y1="48" x2="122" y2="48" stroke="#f4c43c" stroke-width="1" opacity="0.75"/>
+            <line x1="58" y1="62" x2="112" y2="62" stroke="#f4c43c" stroke-width="1" opacity="0.55"/>
+            <line x1="58" y1="76" x2="122" y2="76" stroke="#f4c43c" stroke-width="1" opacity="0.55"/>
+            <line x1="58" y1="90" x2="98" y2="90" stroke="#f4c43c" stroke-width="1" opacity="0.45"/>
+            <path d="M 58 102 L 70 114 L 94 90" stroke="#f4c43c" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <text x="90" y="128" fill="#65625a" font-family="JetBrains Mono" font-size="7" text-anchor="middle">MEERAS · WILL</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tag" style="color:#f4c43c;">/ web · estate</div>
+          <h3 class="project-title">Islamic Will Generation</h3>
+          <p class="project-desc">Meeras — draft an Islamic will in the browser with guided steps. Free, open source, and your data stays on this device until you export.</p>
+        </div>
+      </a>
+
+      <a class="project" href="https://fareez.dev/mcalc/">
+        <div class="project-visual">
+          <svg width="180" height="140" viewBox="0 0 180 140" fill="none">
+            <rect x="78" y="22" width="24" height="14" rx="2" stroke="#ff7849" stroke-width="1.3" fill="rgba(255,120,73,0.05)"/>
+            <line x1="90" y1="36" x2="90" y2="50" stroke="#ff7849" stroke-width="1.2"/>
+            <line x1="50" y1="50" x2="130" y2="50" stroke="#ff7849" stroke-width="1.2"/>
+            <line x1="50" y1="50" x2="50" y2="64" stroke="#ff7849" stroke-width="1.2"/>
+            <line x1="90" y1="50" x2="90" y2="64" stroke="#ff7849" stroke-width="1.2"/>
+            <line x1="130" y1="50" x2="130" y2="64" stroke="#ff7849" stroke-width="1.2"/>
+            <rect x="38" y="64" width="24" height="14" rx="2" stroke="#ff7849" stroke-width="1.3" fill="rgba(255,120,73,0.05)"/>
+            <rect x="78" y="64" width="24" height="14" rx="2" stroke="#ff7849" stroke-width="1.3" fill="rgba(255,120,73,0.05)"/>
+            <rect x="118" y="64" width="24" height="14" rx="2" stroke="#ff7849" stroke-width="1.3" fill="rgba(255,120,73,0.05)"/>
+            <text x="50" y="100" fill="#ff7849" font-family="JetBrains Mono" font-size="9" text-anchor="middle">1/4</text>
+            <text x="90" y="100" fill="#ff7849" font-family="JetBrains Mono" font-size="9" text-anchor="middle">1/2</text>
+            <text x="130" y="100" fill="#ff7849" font-family="JetBrains Mono" font-size="9" text-anchor="middle">1/4</text>
+            <text x="90" y="120" fill="#65625a" font-family="JetBrains Mono" font-size="7" text-anchor="middle">MCALC · FARAID</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tag" style="color:#ff7849;">/ web · fiqh</div>
+          <h3 class="project-title">Islamic Inheritance Calculator</h3>
+          <p class="project-desc">Faraid distribution with madhhab notes and citations at <span class="mono">/mcalc</span>. Built to be auditable — every share shows the rule behind it.</p>
+        </div>
+      </a>
+
+      <article class="project">
+        <div class="project-visual">
+          <svg width="180" height="140" viewBox="0 0 180 140" fill="none">
+            <line x1="20" y1="100" x2="160" y2="100" stroke="#6ea8ff" stroke-width="1" opacity="0.4" stroke-dasharray="3 3"/>
+            <path d="M 20 100 Q 40 40, 60 70 Q 80 95, 100 50 Q 120 90, 140 60 Q 155 80, 160 70" stroke="#6ea8ff" stroke-width="1.5" fill="none"/>
+            <circle cx="40" cy="55" r="3" fill="#6ea8ff"/>
+            <circle cx="80" cy="82" r="3" fill="#6ea8ff"/>
+            <circle cx="100" cy="50" r="3" fill="#6ea8ff"/>
+            <circle cx="140" cy="60" r="3" fill="#6ea8ff"/>
+            <rect x="22" y="22" width="8" height="8" stroke="#6ea8ff" stroke-width="1" fill="rgba(110,168,255,0.2)"/>
+            <path d="M 23 26 L 26 29 L 30 23" stroke="#6ea8ff" stroke-width="1.2" fill="none"/>
+            <rect x="36" y="22" width="8" height="8" stroke="#6ea8ff" stroke-width="1" fill="rgba(110,168,255,0.2)"/>
+            <path d="M 37 26 L 40 29 L 44 23" stroke="#6ea8ff" stroke-width="1.2" fill="none"/>
+            <rect x="50" y="22" width="8" height="8" stroke="#6ea8ff" stroke-width="1" opacity="0.4"/>
+            <rect x="64" y="22" width="8" height="8" stroke="#6ea8ff" stroke-width="1" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tag" style="color:#6ea8ff;">/ productivity · health</div>
+          <h3 class="project-title">Life Planner for ADHD</h3>
+          <p class="project-desc">A planner built around ADHD brains — short loops, dopamine-aware structure, no shame on missed days. Currently in prototype.</p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-visual">
+          <svg width="180" height="140" viewBox="0 0 180 140" fill="none">
+            <rect x="30" y="40" width="50" height="30" rx="2" stroke="#f4c43c" stroke-width="1.3"/>
+            <line x1="35" y1="40" x2="35" y2="35" stroke="#f4c43c" stroke-width="1"/>
+            <line x1="45" y1="40" x2="45" y2="35" stroke="#f4c43c" stroke-width="1"/>
+            <line x1="55" y1="40" x2="55" y2="35" stroke="#f4c43c" stroke-width="1"/>
+            <line x1="65" y1="40" x2="65" y2="35" stroke="#f4c43c" stroke-width="1"/>
+            <line x1="75" y1="40" x2="75" y2="35" stroke="#f4c43c" stroke-width="1"/>
+            <text x="55" y="58" fill="#f4c43c" font-family="JetBrains Mono" font-size="8" text-anchor="middle">UNO R3</text>
+            <line x1="95" y1="55" x2="105" y2="55" stroke="#f4c43c" stroke-width="1.2"/>
+            <rect x="105" y="50" width="20" height="10" stroke="#f4c43c" stroke-width="1.2" fill="rgba(244,196,60,0.1)"/>
+            <line x1="125" y1="55" x2="135" y2="55" stroke="#f4c43c" stroke-width="1.2"/>
+            <circle cx="150" cy="55" r="5" stroke="#f4c43c" stroke-width="1.2" fill="rgba(244,196,60,0.3)"/>
+            <line x1="150" y1="60" x2="150" y2="70" stroke="#f4c43c" stroke-width="1"/>
+            <line x1="155" y1="60" x2="155" y2="70" stroke="#f4c43c" stroke-width="1"/>
+            <rect x="30" y="90" width="120" height="25" rx="2" stroke="#f4c43c" stroke-width="1" opacity="0.5"/>
+            <line x1="35" y1="97" x2="145" y2="97" stroke="#f4c43c" stroke-width="0.5" opacity="0.4"/>
+            <line x1="35" y1="103" x2="145" y2="103" stroke="#f4c43c" stroke-width="0.5" opacity="0.4"/>
+            <line x1="35" y1="109" x2="145" y2="109" stroke="#f4c43c" stroke-width="0.5" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-tag" style="color:#f4c43c;">/ hardware · maker</div>
+          <h3 class="project-title">Workshop Build Kits</h3>
+          <p class="project-desc">Curated kits for STEM sessions: parts list, 3D-printable files, Tinkercad simulations, ready to run with teens (10–16).</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tools">
+  <div class="container">
+    <div class="section-head">
+      <span class="mono section-label">§ 03 — Tools</span>
+      <h2 class="section-title">Small useful things. Free to use, no signup.</h2>
+    </div>
+
+    <div class="tools">
+      <a href="https://fareez.dev/meeras/" class="tool">
+        <span class="tool-num">/tool_01</span>
+        <span class="tool-title">Islamic Will</span>
+        <span class="tool-desc">Meeras — walk through drafting an Islamic will in the browser. Data stays on your device.</span>
+        <span class="tool-go">Open <span>→</span></span>
+      </a>
+      <a href="https://fareez.dev/mcalc/" class="tool">
+        <span class="tool-num">/tool_02</span>
+        <span class="tool-title">Inheritance Calculator</span>
+        <span class="tool-desc">Faraid shares with madhhab notes and citations — every line shows the rule behind it.</span>
+        <span class="tool-go">Open <span>→</span></span>
+      </a>
+      <a href="https://fareez.dev/zakat/" class="tool">
+        <span class="tool-num">/tool_03</span>
+        <span class="tool-title">Zakat Calculator</span>
+        <span class="tool-desc">Annual zakat across cash, gold, silver, and trade goods.</span>
+        <span class="tool-go">Open <span>→</span></span>
+      </a>
+      <a href="https://fareez.dev/health/" class="tool">
+        <span class="tool-num">/tool_04</span>
+        <span class="tool-title">Health Indicator Section</span>
+        <span class="tool-desc">BMI and body fat ratio with context on what each number does and doesn’t tell you.</span>
+        <span class="tool-go">Open <span>→</span></span>
+      </a>
+      <a href="#" class="tool">
+        <span class="tool-num">/tool_05</span>
+        <span class="tool-title">ADHD Life Planner</span>
+        <span class="tool-desc">Built for ADHD brains. Short cycles, gentle structure.</span>
+        <span class="tool-go">Open <span>→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="consult">
+  <div class="container">
+    <div class="section-head">
+      <span class="mono section-label">§ 04 — Work together</span>
+      <h2 class="section-title">Two ways to bring me in.</h2>
+    </div>
+
+    <div class="cta-row">
+      <div class="cta-card consult">
+        <span class="mono">FOR ORGANISATIONS &amp; TEAMS</span>
+        <h3>Consult on a project</h3>
+        <p>Architecture reviews, prototype builds, technical leadership for short engagements. Limited slots — currently taking briefs for next quarter.</p>
+        <a href="mailto:hello@fareez.dev" class="btn">Start a brief →</a>
+      </div>
+      <div class="cta-card speak" id="speak">
+        <span class="mono">FOR SCHOOLS, COMMUNITIES, EVENTS</span>
+        <h3>Book a public session</h3>
+        <p>STEM workshops for teens (10–16), Arduino &amp; robotics intros, talks on building with hardware. Held in Melbourne or remote.</p>
+        <a href="mailto:speak@fareez.dev" class="btn">Check availability →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+<div class="ascii-bot">      ___________
+     |  ._____.  |
+     |  | <span class="eye">o</span> <span class="eye">o</span> |  |    &lt; built with solder smoke, late-night
+     |  |_____|  |     coffee, and a 3D printer that
+    /|___________|\    only sometimes behaves /
+   //|           |\\
+  //_|___________|_\\
+     ||         ||
+     ||         ||
+    [__]       [__]</div>
+    <div class="foot">
+      <span>© 2026 Fareez Ahmed — Melbourne · UTC+11</span>
+      <div class="foot-links">
+        <a href="#">GitHub</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">RSS</a>
+        <a href="#">Email</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function tick() {
+  const now = new Date().toLocaleString('en-AU', {
+    timeZone: 'Australia/Melbourne',
+    hour: '2-digit', minute: '2-digit', hour12: false
+  });
+  const el = document.getElementById('clock');
+  if (el) el.textContent = now;
+}
+tick();
+setInterval(tick, 30000);
+</script>
+
+</body>
+</html>

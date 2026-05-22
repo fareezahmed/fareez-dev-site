@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Lost in space · fareez.dev</title>
+<meta name="robots" content="noindex">
+<script async src="https://analytics.fareez.dev/script.js" data-website-id="95d7e13f-5749-4edc-a724-df39b41f5246"></script>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,400&family=Manrope:wght@400;500&family=JetBrains+Mono:wght@400;500&family=VT323&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d0d0b;
+  --surface: #1a1a14;
+  --line: #2a2a22;
+  --ink: #f0ebdb;
+  --ink-dim: #a8a499;
+  --ink-fade: #65625a;
+  --dev: #ff7849;
+  --bot: #d4ff52;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Manrope', sans-serif;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  padding: 32px;
+  background-image: radial-gradient(circle at 1px 1px, rgba(240,235,219,0.05) 1px, transparent 0);
+  background-size: 28px 28px;
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(255,120,73,0.08), transparent 50%),
+    radial-gradient(ellipse at 20% 80%, rgba(212,255,82,0.06), transparent 50%);
+  pointer-events: none;
+}
+.wrap {
+  max-width: 640px;
+  text-align: center;
+}
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-fade);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.live-dot {
+  width: 6px; height: 6px;
+  background: var(--dev); border-radius: 50%;
+  box-shadow: 0 0 8px var(--dev);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.code {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(5rem, 18vw, 9rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--dev);
+  margin-bottom: 8px;
+  font-style: italic;
+}
+h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  line-height: 1.1;
+}
+p {
+  color: var(--ink-dim);
+  margin-bottom: 36px;
+  font-size: 1.02rem;
+  line-height: 1.55;
+}
+.ascii {
+  font-family: 'VT323', 'JetBrains Mono', monospace;
+  font-size: 1.05rem;
+  color: var(--ink-fade);
+  line-height: 1.15;
+  white-space: pre;
+  margin-bottom: 36px;
+  display: inline-block;
+  text-align: left;
+}
+.ascii .eye { color: var(--bot); }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 13px 24px;
+  border-radius: 999px;
+  background: var(--dev);
+  color: var(--bg);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s;
+}
+.btn:hover { background: var(--ink); transform: translateY(-1px); }
+.term {
+  background: #0a0a08;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 16px 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--ink-dim);
+  text-align: left;
+  margin: 0 auto 36px;
+  max-width: 480px;
+}
+.term .prompt { color: var(--bot); }
+.term .err { color: var(--dev); }
+.cursor {
+  display: inline-block;
+  width: 7px; height: 1em;
+  background: var(--dev);
+  vertical-align: text-bottom;
+  animation: blink 1s steps(2) infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="mono"><span class="live-dot"></span>STATUS: ROUTE NOT FOUND</div>
+
+  <div class="code">404</div>
+  <h1>This path isn't on the circuit board.</h1>
+  <p>The page you're looking for either moved, never existed, or got dismantled for parts.</p>
+
+  <div class="term">
+    <div><span class="prompt">fareez@melbourne</span>:~$ cd <span class="err">/the-page-you-wanted</span></div>
+    <div><span class="err">cd: no such file or directory</span></div>
+    <div><span class="prompt">fareez@melbourne</span>:~$ cd /home<span class="cursor"></span></div>
+  </div>
+
+  <a href="/" class="btn">Take me home →</a>
+</div>
+</body>
+</html>
